@@ -1,0 +1,2798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aftab Ahomod Riyad (Izumi) - Security Researcher & Offensive Engineer</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Security Researcher | Offensive Engineer | Automation Architect with 5+ years experience in penetration testing, bug bounty hunting, and security automation. Available for freelance cybersecurity consulting.">
+    <meta name="keywords" content="cybersecurity consultant, ethical hacker, penetration testing, bug bounty hunter, security researcher, freelancer, API security, automation, izumi">
+    <meta name="author" content="Aftab Ahomod Riyad">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Aftab Ahomod Riyad (Izumi) - Security Researcher & Offensive Engineer">
+    <meta property="og:description" content="Security researcher and automation architect focused on API security, bug bounty hunting, and custom tool development">
+    <meta property="og:url" content="https://izumi-portfolio.com">
+    <meta property="og:image" content="assets/images/profile/izumi-profile.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/logos/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/images/logos/logo-white.png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Three.js for 3D effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            /* Dark hacker theme with professional touch */
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --card-bg: #111111;
+            --border-color: #333333;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            --accent-primary: #00ff88;
+            --accent-secondary: #0099ff;
+            --accent-danger: #ff4444;
+            --accent-warning: #ffaa00;
+
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+            /* Spacing */
+            --container-max: 1200px;
+            --section-padding: 120px 0;
+            --element-gap: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Matrix Rain Background */
+        .matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            opacity: 0.3;
+        }
+
+        /* Profile Image Styles */
+        .profile-image-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-primary);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+            object-fit: cover;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.5);
+        }
+
+        /* Project Screenshot Styles */
+        .project-image-container {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .project-screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-screenshot {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Enhanced Terminal */
+        .terminal-enhanced {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            min-width: 450px;
+            max-height: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .terminal-enhanced .terminal-header {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-title {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-left: 1rem;
+        }
+
+        .terminal-body {
+            padding: 1.5rem;
+            height: 300px;
+            overflow-y: auto;
+            background: var(--card-bg);
+        }
+
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .terminal-input {
+            background: transparent;
+            border: none;
+            color: var(--accent-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            outline: none;
+            flex: 1;
+            margin-left: 0.5rem;
+        }
+
+        .command-suggestion {
+            position: absolute;
+            bottom: 1rem;
+            left: 1.5rem;
+            right: 1.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 8px;
+            padding: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--accent-primary);
+        }
+
+        /* Glitch effect for cyberpunk feel */
+        .glitch {
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+            10% {
+                transform: translate(-2px, -1px);
+            }
+            20% {
+                transform: translate(2px, 1px);
+            }
+            30% {
+                transform: translate(-1px, 2px);
+            }
+            40% {
+                transform: translate(1px, -2px);
+            }
+            50% {
+                transform: translate(-2px, 1px);
+            }
+            60% {
+                transform: translate(2px, -1px);
+            }
+            70% {
+                transform: translate(-1px, -2px);
+            }
+            80% {
+                transform: translate(1px, 2px);
+            }
+        }
+
+        /* Enhanced skill progress bars */
+        .skill-progress {
+            width: 100%;
+            height: 4px;
+            background: var(--secondary-bg);
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+            width: 0%;
+            transition: width 2s ease-in-out;
+        }
+
+        /* Live stats counter */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-family: var(--font-mono);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.9rem;
+        }
+
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-text {
+            font-family: var(--font-mono);
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: var(--secondary-bg);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 8px;
+            height: 8px;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 4s;
+        }
+
+        .particle:nth-child(2) {
+            width: 6px;
+            height: 6px;
+            left: 20%;
+            animation-delay: 1s;
+            animation-duration: 5s;
+        }
+
+        .particle:nth-child(3) {
+            width: 10px;
+            height: 10px;
+            left: 30%;
+            animation-delay: 2s;
+            animation-duration: 6s;
+        }
+
+        .particle:nth-child(4) {
+            width: 4px;
+            height: 4px;
+            left: 40%;
+            animation-delay: 3s;
+            animation-duration: 4.5s;
+        }
+
+        .particle:nth-child(5) {
+            width: 12px;
+            height: 12px;
+            left: 50%;
+            animation-delay: 0.5s;
+            animation-duration: 5.5s;
+        }
+
+        .particle:nth-child(6) {
+            width: 7px;
+            height: 7px;
+            left: 60%;
+            animation-delay: 1.5s;
+            animation-duration: 4.8s;
+        }
+
+        .particle:nth-child(7) {
+            width: 9px;
+            height: 9px;
+            left: 70%;
+            animation-delay: 2.5s;
+            animation-duration: 5.2s;
+        }
+
+        .particle:nth-child(8) {
+            width: 5px;
+            height: 5px;
+            left: 80%;
+            animation-delay: 3.5s;
+            animation-duration: 4.3s;
+        }
+
+        .particle:nth-child(9) {
+            width: 11px;
+            height: 11px;
+            left: 90%;
+            animation-delay: 0.8s;
+            animation-duration: 6.2s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Grid overlay */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0, 255, 136, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+            background-size: 100px 100px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        /* Container */
+        .container {
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo::before {
+            content: "$ ";
+            color: var(--accent-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 153, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text .subtitle {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            color: var(--accent-secondary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--accent-primary);
+            color: var(--primary-bg);
+        }
+
+        .btn-primary:hover {
+            background: #00cc6a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .terminal {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            min-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: var(--accent-danger); }
+        .dot-yellow { background: var(--accent-warning); }
+        .dot-green { background: var(--accent-primary); }
+
+        .terminal-content {
+            color: var(--text-secondary);
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .prompt {
+            color: var(--accent-primary);
+        }
+
+        .command {
+            color: var(--accent-secondary);
+        }
+
+        .output {
+            color: var(--text-muted);
+            margin-left: 1rem;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: var(--section-padding);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Resume Section Styles */
+        .resume-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+        }
+
+        .resume-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--accent-primary);
+        }
+
+        .resume-title {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .resume-contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-item i {
+            color: var(--accent-primary);
+            width: 20px;
+        }
+
+        .resume-section {
+            margin-bottom: 3rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+        }
+
+        .resume-section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resume-section-title i {
+            font-size: 1.25rem;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resume-item {
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .resume-item:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .resume-item-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item-subtitle {
+            color: var(--accent-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .resume-item-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-family: var(--font-mono);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-primary);
+            color: var(--primary-bg);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .download-btn:hover {
+            background: #00cc6a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Project/Experience timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-primary);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-left: 1rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 1.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            border: 3px solid var(--primary-bg);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-subtitle {
+            color: var(--accent-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--secondary-bg), var(--card-bg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(0, 255, 136, 0.05) 20px
+                );
+        }
+
+        .project-icon {
+            font-size: 4rem;
+            color: var(--accent-primary);
+            z-index: 1;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-type {
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--accent-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-family: var(--font-mono);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .project-link:hover {
+            color: var(--accent-primary);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text .highlight {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+        }
+
+        .skill-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-description {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-bg);
+                border-top: 1px solid var(--border-color);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .terminal {
+                min-width: auto;
+                max-width: 100%;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .resume-contact {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                margin-left: 0.5rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Loading animation for project images */
+        .project-image.loading {
+            background: linear-gradient(
+                90deg,
+                var(--secondary-bg) 25%,
+                var(--card-bg) 50%,
+                var(--secondary-bg) 75%
+            );
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text">
+            <span class="glitch">Initializing Security Framework...</span>
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+        </div>
+    </div>
+
+    <!-- Matrix Rain Background -->
+    <canvas class="matrix-canvas" id="matrixCanvas"></canvas>
+
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="grid-overlay"></div>
+        <div class="floating-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">izumi_</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#resume" class="nav-link">Resume</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="subtitle">Security Researcher | Offensive Engineer | Automation Architect</div>
+                    <h1>Aftab Ahomod Riyad</h1>
+                    <p class="tagline">Breaking systems for peaking my Dopamine dependency.</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-code"></i>
+                            View My Arsenal
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i>
+                            Let's Build Something
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <!-- Add profile image container -->
+                    <div class="profile-image-container">
+                        <img src="assets/images/profile/izumi-profile.jpg"
+                             alt="Aftab Ahomod Riyad - Security Researcher"
+                             class="profile-image">
+                    </div>
+                    <div class="terminal-enhanced">
+                        <div class="terminal-header">
+                            <div style="display: flex; gap: 0.5rem;">
+                                <div class="terminal-dot dot-red"></div>
+                                <div class="terminal-dot dot-yellow"></div>
+                                <div class="terminal-dot dot-green"></div>
+                            </div>
+                            <div class="terminal-title">phantom_terminal v4.0</div>
+                        </div>
+                        <div class="terminal-body" id="terminalBody">
+                            <div class="terminal-line">
+                                <span class="prompt">┌─[izumi@security]─[~]</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="prompt">└─$</span> <span class="command">whoami</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="output">izumi - Security Researcher & Offensive Engineer</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="prompt">└─$</span> <span class="command">ls -la tools/</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="output">drwxr-xr-x 6 izumi izumi 192 Jul 07 2025 PhantomBackend/</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="output">drwxr-xr-x 4 izumi izumi 128 Jul 07 2025 BugBountyPro/</span>
+                            </div>
+                            <div class="terminal-line">
+                                <span class="output">drwxr-xr-x 8 izumi izumi 256 Jul 07 2025 UltraAPIScanner/</span>
+                            </div>
+                            <div class="terminal-input-line">
+                                <span class="prompt">└─$</span>
+                                <input type="text" class="terminal-input" id="terminalInput" placeholder="Try: help, scan, exploit, or clear">
+                            </div>
+                        </div>
+                        <div class="command-suggestion">
+                            💡 Try commands: <code>help</code>, <code>scan target.com</code>, <code>exploit --list</code>, <code>clear</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Arsenal & Projects</h2>
+                <p class="section-subtitle">Custom-built security tools and automation systems designed for real-world penetration testing and bug bounty hunting.</p>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1: Phantom Backend Cloud v4.0 -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image-container">
+                        <img src="assets/images/projects/phantom-backend.png"
+                             alt="Phantom Backend Cloud v4.0"
+                             class="project-screenshot">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-type">Enterprise Cloud Platform</div>
+                        <h3 class="project-title">Phantom Backend Cloud v4.0</h3>
+                        <p class="project-description">
+                            Enterprise-grade cloud recon and API testing platform with ML-based threat scoring, subdomain enumeration,
+                            API leak detection, passive recon engine, and CVE fetching capabilities.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Bash</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Kubernetes</span>
+                            <span class="tech-tag">ML</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/in/zeroizumi/recent-activity/all/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="#contact" class="project-link">
+                                <i class="fas fa-envelope"></i>
+                                Request Access
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Bug Bounty Hunter Pro -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image-container">
+                        <img src="assets/images/projects/bug-bounty-pro.png"
+                             alt="Bug Bounty Hunter Pro"
+                             class="project-screenshot">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-type">Automation Suite</div>
+                        <h3 class="project-title">Bug Bounty Hunter Pro</h3>
+                        <p class="project-description">
+                            End-to-end bounty hunting automation suite with multi-threaded payloads, auth bypass techniques,
+                            token brute-forcing, X-Forwarded logic, and intelligent CLI interface.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Go</span>
+                            <span class="tech-tag">FFUF</span>
+                            <span class="tech-tag">Nuclei</span>
+                            <span class="tech-tag">CLI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/in/zeroizumi/recent-activity/all/" class="project-link" target="_blank">
+                                <i class="fas fa-chart-line"></i>
+                                Demo Results
+                            </a>
+                            <a href="#contact" class="project-link">
+                                <i class="fas fa-download"></i>
+                                Get Tool
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Ultra API Scanner -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image-container">
+                        <img src="assets/images/projects/ultra-api-scanner.png"
+                             alt="Ultra API Scanner"
+                             class="project-screenshot">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-type">API Security Framework</div>
+                        <h3 class="project-title">Ultra API Scanner</h3>
+                        <p class="project-description">
+                            Advanced API security scanner with JWT analysis, GraphQL testing, IDOR/BOLA detection,
+                            authentication fuzzing, smart mutation capabilities, and dynamic CLI interface.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">GraphQL</span>
+                            <span class="tech-tag">REST</span>
+                            <span class="tech-tag">OAuth</span>
+                            <span class="tech-tag">JWT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/in/zeroizumi/recent-activity/all/" class="project-link" target="_blank">
+                                <i class="fas fa-play"></i>
+                                Watch Demo
+                            </a>
+                            <a href="#contact" class="project-link">
+                                <i class="fas fa-book"></i>
+                                Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Fake bKash Payment Gateway -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image-container">
+                        <img src="assets/images/projects/bkash-gateway.png"
+                             alt="Fake bKash Payment Gateway"
+                             class="project-screenshot">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-type">Payment Simulation System</div>
+                        <h3 class="project-title">Fake bKash Payment Gateway Suite</h3>
+                        <p class="project-description">
+                            Realistic fake PSP system with complete frontend and backend, client branding, callback logic,
+                            API key management, and test integration capabilities for security research.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">JSON</span>
+                            <span class="tech-tag">API</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/in/zeroizumi/recent-activity/all/" class="project-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                                Live Demo
+                            </a>
+                            <a href="#contact" class="project-link">
+                                <i class="fas fa-code"></i>
+                                Source Code
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: UAE Crypto OSINT Recon -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image-container">
+                        <img src="assets/images/projects/uae-crypto-osint.png"
+                             alt="UAE Crypto OSINT Recon"
+                             class="project-screenshot">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-type">OSINT Intelligence System</div>
+                        <h3 class="project-title">UAE Crypto OSINT Recon</h3>
+                        <p class="project-description">
+                            Client-targeted crypto wallet leak tracking system using breach databases, dark web scanning,
+                            wallet link correlation, and client metadata extraction for comprehensive OSINT analysis.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">OSINT</span>
+                            <span class="tech-tag">CLI</span>
+                            <span class="tech-tag">Dark Web</span>
+                            <span class="tech-tag">Crypto</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/in/zeroizumi/recent-activity/all/" class="project-link" target="_blank">
+                                <i class="fas fa-search"></i>
+                                Case Study
+                            </a>
+                            <a href="#contact" class="project-link">
+                                <i class="fas fa-shield-alt"></i>
+                                Commission Similar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: LinkedIn Auto Apply Bot -->
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image-container">
+                        <img src="assets/images/projects/linkedin-bot.png"
+                             alt="LinkedIn Auto Apply Bot"
+                             class="project-screenshot">
+                        <div class="project-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-type">Automation Bot</div>
+                        <h3 class="project-title">LinkedIn Smart Apply Bot</h3>
+                        <p class="project-description">
+                            Intelligent Puppeteer-based automation system with smart autofill capabilities,
+                            multi-step form navigation, and advanced logic for handling complex application workflows.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Puppeteer</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Automation</span>
+                            <span class="tech-tag">AI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/in/zeroizumi/recent-activity/all/" class="project-link" target="_blank">
+                                <i class="fas fa-robot"></i>
+                                Bot Demo
+                            </a>
+                            <a href="#contact" class="project-link">
+                                <i class="fas fa-cogs"></i>
+                                Custom Bot
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Security researcher and automation architect focused on breaking systems responsibly and building tools that matter.</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I started my cybersecurity journey out of pure obsession with how systems can be broken — and defended. I didn't learn from boring tutorials. I read real hacker books, reverse-engineered APIs, and built my own automation tools from scratch. From bug bounties to building fake PSPs, I turned curiosity into income and skill into impact.
+                    </p>
+                    <p>
+                        With <span class="highlight">5+ years of hands-on experience</span>, I've delivered UAE crypto intelligence recon projects for international clients, developed comprehensive security suites like UltraRecon and UltraAuthBypass, and scanned 200+ targets with custom bounty toolkits. I've built complete portfolios, bots, and bypasses from scratch.
+                    </p>
+                    <p>
+                        <span class="highlight">What makes me unique:</span> I build my own tools. I don't follow pre-made maps — I reverse them. Real-world hacker logic, full-stack builds, and operational stealth define my approach. My mission is to become one of the top offensive hackers in the world — combining automation, recon, and API mastery to break & rebuild the internet securely.
+                    </p>
+
+                    <!-- Live Stats -->
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="200">0</div>
+                            <div class="stat-label">Targets Scanned</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="12">0</div>
+                            <div class="stat-label">Custom Tools Built</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="5">0</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-target="1">0</div>
+                            <div class="stat-label">International Clients</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <div class="skill-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <div class="skill-title">API Security</div>
+                        <div class="skill-description">JWT analysis, GraphQL testing, IDOR/BOLA detection</div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-skill="95"></div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="skill-title">Automation</div>
+                        <div class="skill-description">Custom tool development and process automation</div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-skill="92"></div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="skill-title">OSINT & Recon</div>
+                        <div class="skill-description">Intelligence gathering and threat research</div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-skill="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="skill-title">Auth Bypass</div>
+                        <div class="skill-description">Advanced authentication and authorization bypass</div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-skill="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="skill-title">Full-Stack Development</div>
+                        <div class="skill-description">React, Node.js, Python, Go development</div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-skill="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <div class="skill-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="skill-title">Payment Gateway Spoofing</div>
+                        <div class="skill-description">PSP simulation and testing systems</div>
+                        <div class="skill-progress">
+                            <div class="skill-progress-bar" data-skill="93"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume">
+        <div class="container">
+                        <div class="section-header">
+                <h2 class="section-title">Resume</h2>
+                <p class="section-subtitle">Security researcher and automation architect with 5+ years of experience in offensive security and custom tool development.</p>
+            </div>
+            <div class="resume-content">
+                <!-- Header -->
+                <div class="resume-header animate-on-scroll">
+                    <h3 class="resume-name">Aftab Ahomod Riyad (Izumi)</h3>
+                    <div class="resume-title">Security Researcher • Offensive Engineer • Automation Architect</div>
+                    <div class="resume-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>amiizumi00@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <span>linkedin.com/in/zeroizumi</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Dhaka, Bangladesh</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <span>github.com/izumiriyad</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Summary -->
+                <div class="resume-section animate-on-scroll">
+                    <h4 class="resume-section-title">
+                        <i class="fas fa-user-tie"></i>
+                        Professional Summary
+                    </h4>
+                    <p>Self-taught security researcher with 5+ years of experience in offensive security, API testing, and automation development. Specializes in building custom tools for bug bounty hunting, creating payment gateway simulations, and delivering client-targeted OSINT projects. Expert in reverse engineering, auth bypass techniques, and full-stack security implementations.</p>
+                </div>
+
+                <!-- Experience -->
+                <div class="resume-section animate-on-scroll">
+                    <h4 class="resume-section-title">
+                        <i class="fas fa-briefcase"></i>
+                        Experience & Projects
+                    </h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h5 class="timeline-title">Freelance Security Researcher & Tool Developer</h5>
+                            <div class="timeline-subtitle">2019 - Present</div>
+                            <div class="timeline-description">
+                                <ul>
+                                    <li>Delivered $200 UAE crypto intelligence recon project with repeat client orders</li>
+                                    <li>Built Phantom Backend Cloud v4.0 - Enterprise-grade recon platform with ML threat scoring</li>
+                                    <li>Developed Bug Bounty Hunter Pro automation suite with multi-threaded payloads</li>
+                                    <li>Created realistic bKash payment gateway simulation system for security testing</li>
+                                    <li>Scanned 200+ targets using custom bounty hunting toolkit</li>
+                                    <li>Built LinkedIn Smart Apply Bot with advanced form automation</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Projects -->
+                <div class="resume-section animate-on-scroll">
+                    <h4 class="resume-section-title">
+                        <i class="fas fa-project-diagram"></i>
+                        Key Projects & Achievements
+                    </h4>
+                    <div class="resume-grid">
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Phantom Backend Cloud v4.0</h5>
+                            <div class="resume-item-subtitle">Enterprise Security Platform</div>
+                            <div class="resume-item-description">
+                                ML-based threat scoring platform with subdomain enumeration, API leak detection, passive recon engine, and CVE fetching capabilities.
+                            </div>
+                        </div>
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">UAE Crypto OSINT Project</h5>
+                            <div class="resume-item-subtitle">Client Commission - $200</div>
+                            <div class="resume-item-description">
+                                Delivered comprehensive crypto wallet leak tracking system using breach databases and dark web scanning for international client.
+                            </div>
+                        </div>
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Bug Bounty Hunter Pro</h5>
+                            <div class="resume-item-subtitle">Automation Suite</div>
+                            <div class="resume-item-description">
+                                End-to-end bounty hunting automation with auth bypass, token brute-forcing, and X-Forwarded logic implementation.
+                            </div>
+                        </div>
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Fake bKash Gateway Suite</h5>
+                            <div class="resume-item-subtitle">Payment Simulation System</div>
+                            <div class="resume-item-description">
+                                Complete PSP simulation with frontend/backend, client branding, callback logic, and API key management.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Skills -->
+                <div class="resume-section animate-on-scroll">
+                    <h4 class="resume-section-title">
+                        <i class="fas fa-cogs"></i>
+                        Technical Skills
+                    </h4>
+                    <div class="resume-grid">
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Programming Languages</h5>
+                            <div class="skills-list">
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Node.js</span>
+                                <span class="skill-tag">Bash</span>
+                                <span class="skill-tag">Go</span>
+                            </div>
+                        </div>
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Security Tools</h5>
+                            <div class="skills-list">
+                                <span class="skill-tag">Burp Suite</span>
+                                <span class="skill-tag">FFUF</span>
+                                <span class="skill-tag">Nmap</span>
+                                <span class="skill-tag">Nuclei</span>
+                                <span class="skill-tag">Metasploit Pro</span>
+                                <span class="skill-tag">Acunetix Pro</span>
+                                <span class="skill-tag">Nessus Pro</span>
+                            </div>
+                        </div>
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Specializations</h5>
+                            <div class="skills-list">
+                                <span class="skill-tag">API Security</span>
+                                <span class="skill-tag">Auth Bypass</span>
+                                <span class="skill-tag">Automation</span>
+                                <span class="skill-tag">OSINT</span>
+                                <span class="skill-tag">Payment Gateway Spoofing</span>
+                            </div>
+                        </div>
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Technologies</h5>
+                            <div class="skills-list">
+                                <span class="skill-tag">React</span>
+                                <span class="skill-tag">Express</span>
+                                <span class="skill-tag">Docker</span>
+                                <span class="skill-tag">Kubernetes</span>
+                                <span class="skill-tag">GraphQL</span>
+                                <span class="skill-tag">REST APIs</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education & Certifications -->
+                <div class="resume-section animate-on-scroll">
+                    <h4 class="resume-section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Education & Certifications
+                    </h4>
+                    <div class="resume-grid">
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Self-Taught Education</h5>
+                            <div class="resume-item-subtitle">Real World Projects & Reverse Engineering</div>
+                            <div class="resume-item-description">
+                                Advanced learning through practical implementation, reverse engineering APIs, and building custom security tools from scratch.
+                            </div>
+                        </div>
+                        <div class="resume-item">
+                            <h5 class="resume-item-title">Future Plans</h5>
+                            <div class="resume-item-subtitle">Japan MEXT Scholarship 2025</div>
+                            <div class="resume-item-description">
+                                Planning to pursue advanced cybersecurity education in Japan through the MEXT scholarship program.
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5 style="margin: 2rem 0 1rem 0; color: var(--accent-secondary);">Professional Certifications</h5>
+                    <div class="skills-list">
+                        <span class="skill-tag">Attacking Network Protocols (James Forshaw) - Feb 2025</span>
+                        <span class="skill-tag">Complete 2024 Web Dev Bootcamp - Dec 2024</span>
+                        <span class="skill-tag">CompTIA Network+ N10-008 - Jun 2024</span>
+                        <span class="skill-tag">Complete Cyber Security Course - Nov 2022</span>
+                        <span class="skill-tag">SANS SEC542 Web App Pentesting - Jul 2022</span>
+                        <span class="skill-tag">Website Hacking / Penetration Testing - Oct 2020</span>
+                        <span class="skill-tag">YouTube Creator Course - Jul 2018</span>
+                        <span class="skill-tag">Kali Linux For Beginners - Aug 2017</span>
+                    </div>
+                </div>
+
+                <!-- Download Resume -->
+                <div class="text-center">
+                    <a href="#" class="download-btn" onclick="downloadResume()">
+                        <i class="fas fa-download"></i>
+                        Download Full Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Build Something Great</h2>
+                <p class="section-subtitle">Ready to break or build something securely? Let's discuss your next security project or automation challenge.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/xeokbqbq" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project, security challenge, or automation needs..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/izumiriyad" class="social-link" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/zeroizumi/" class="social-link" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@learnearning24" class="social-link" target="_blank" title="YouTube - Learning Channel">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@techgothacked" class="social-link" target="_blank" title="YouTube - Tech Channel">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@godgameplay_" class="social-link" target="_blank" title="YouTube - Gaming Channel">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.upwork.com/freelancers/~012d71f9fb100a123f" class="social-link" target="_blank" title="Upwork">
+                        <i class="fas fa-briefcase"></i>
+                    </a>
+                    <a href="mailto:amiizumi00@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+
+                <!-- Services Offered -->
+                <div style="margin-top: 3rem; text-align: left;">
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem;">Services Available:</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div style="background: var(--card-bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                            <strong style="color: var(--accent-secondary);">Penetration Testing</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Web apps, APIs, and custom security assessments</span>
+                        </div>
+                        <div style="background: var(--card-bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                            <strong style="color: var(--accent-secondary);">Custom Tool Development</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Recon scripts, automation bots, and security tools</span>
+                        </div>
+                        <div style="background: var(--card-bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                            <strong style="color: var(--accent-secondary);">OSINT & Crypto Recon</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Intelligence gathering and threat analysis</span>
+                        </div>
+                        <div style="background: var(--card-bg); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                            <strong style="color: var(--accent-secondary);">Payment Gateway Simulation</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 0.9rem;">Fake PSP systems for security testing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Availability Info -->
+                <div style="margin-top: 2rem; padding: 1rem; background: var(--card-bg); border-radius: 8px; border: 1px solid var(--border-color);">
+                    <p style="color: var(--accent-primary); font-weight: 600; margin-bottom: 0.5rem;">🕒 Availability: Freelance | Part-Time | On-demand</p>
+                    <p style="color: var(--text-secondary); margin: 0;">Timezone: GMT+6 (Dhaka, Bangladesh) | Preferred contact: Email or LinkedIn DM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aftab Ahomod Riyad (Izumi). All rights reserved. Built with passion for breaking & securing systems.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Download Resume Function
+        function downloadResume() {
+            // Create a comprehensive resume content for download
+            const resumeContent = `
+AFTAB AHOMOD RIYAD (IZUMI)
+Security Researcher • Offensive Engineer • Automation Architect
+
+CONTACT INFORMATION
+Email: amiizumi00@gmail.com
+LinkedIn: linkedin.com/in/zeroizumi
+Location: Dhaka, Bangladesh
+GitHub: github.com/izumiriyad
+YouTube: @learnearning24, @techgothacked, @godgameplay_
+Upwork: upwork.com/freelancers/~012d71f9fb100a123f
+
+PROFESSIONAL SUMMARY
+Self-taught security researcher with 5+ years of experience in offensive security, API testing, and automation development.
+Specializes in building custom tools for bug bounty hunting, creating payment gateway simulations, and delivering
+client-targeted OSINT projects. Expert in reverse engineering, auth bypass techniques, and full-stack security implementations.
+
+EXPERIENCE & ACHIEVEMENTS
+Freelance Security Researcher & Tool Developer (2019 - Present)
+• Delivered $200 UAE crypto intelligence recon project with repeat client orders
+• Built Phantom Backend Cloud v4.0 - Enterprise-grade recon platform with ML threat scoring
+• Developed Bug Bounty Hunter Pro automation suite with multi-threaded payloads
+• Created realistic bKash payment gateway simulation system for security testing
+• Scanned 200+ targets using custom bounty hunting toolkit
+• Built LinkedIn Smart Apply Bot with advanced form automation
+
+KEY PROJECTS
+1. Phantom Backend Cloud v4.0 - Enterprise security platform with ML-based threat scoring
+2. UAE Crypto OSINT Project - $200 client commission for crypto wallet leak tracking
+3. Bug Bounty Hunter Pro - End-to-end bounty hunting automation suite
+4. Fake bKash Gateway Suite - Complete PSP simulation system
+5. Ultra API Scanner - Advanced API security testing framework
+6. LinkedIn Smart Apply Bot - Intelligent job application automation
+
+TECHNICAL SKILLS
+Languages: Python, JavaScript, Node.js, Bash, Go
+Security Tools: Burp Suite, FFUF, Nmap, Nuclei, Metasploit Pro, Acunetix Pro, Nessus Pro
+Specializations: API Security, Auth Bypass, Automation, OSINT, Payment Gateway Spoofing
+Technologies: React, Express, Docker, Kubernetes, GraphQL, REST APIs
+
+CERTIFICATIONS
+• Attacking Network Protocols (James Forshaw) – Feb 2025
+• Complete 2024 Web Dev Bootcamp (Udemy) – Dec 2024
+• CompTIA Network+ N10-008 – Jun 2024
+• Complete Cyber Security Course: Hackers Exposed (Udemy) – Nov 2022
+• SANS SEC542 Web App Pentesting & Ethical Hacking – Jul 2022
+• Website Hacking / Penetration Testing (zSecurity) – Oct 2020
+• YouTube Creator Course (Videoschool Media) – Jul 2018
+• Kali Linux For Beginners (Hackers Academy) – Aug 2017
+
+SERVICES OFFERED
+• Penetration Testing & Security Assessments
+• Custom Security Tool Development
+• Bug Bounty Target Automation
+• OSINT & Crypto Intelligence
+• Payment Gateway Simulation Systems
+• Automation Bot Development
+
+EDUCATION & FUTURE PLANS
+Self-taught through real-world projects and reverse engineering
+Planning Japan MEXT cybersecurity scholarship (2025)
+
+AVAILABILITY
+Freelance | Part-Time | On-demand
+Timezone: GMT+6 (Dhaka, Bangladesh)
+Preferred Contact: Email or LinkedIn DM
+            `.trim();
+
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Aftab_Ahomod_Riyad_Izumi_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+        }
+
+        // Loading Screen Animation with Error Handling
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const loadingProgress = document.getElementById('loadingProgress');
+
+            if (!loadingScreen || !loadingProgress) {
+                console.error('Loading screen elements not found');
+                return;
+            }
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loadingScreen.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingScreen.style.display = 'none';
+                        }, 500);
+                    }, 500);
+                }
+                loadingProgress.style.width = progress + '%';
+            }, 100);
+        });
+
+        // Matrix Rain Effect with Error Handling
+        function initMatrix() {
+            const canvas = document.getElementById('matrixCanvas');
+            if (!canvas) {
+                console.warn('Matrix canvas not found');
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+            if (!ctx) {
+                console.warn('Canvas 2D context not supported');
+                return;
+            }
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}';
+            const matrixArray = matrixChars.split('');
+
+            const fontSize = 10;
+            let columns = Math.floor(canvas.width / fontSize);
+
+            const drops = [];
+            for (let x = 0; x < columns; x++) {
+                drops[x] = 1;
+            }
+
+            let animationId;
+
+            function draw() {
+                ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#00ff88';
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+
+                animationId = requestAnimationFrame(draw);
+            }
+
+            // Start with reduced frequency for performance
+            let lastTime = 0;
+            function throttledDraw(currentTime) {
+                if (currentTime - lastTime >= 35) { // ~28 FPS instead of 60
+                    draw();
+                    lastTime = currentTime;
+                }
+                animationId = requestAnimationFrame(throttledDraw);
+            }
+
+            throttledDraw(0);
+
+            // Pause animation when tab is not visible
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    cancelAnimationFrame(animationId);
+                } else {
+                    throttledDraw(0);
+                }
+            });
+        }
+        
+                // Check if THREE.js loaded, if not provide fallback
+        function check3DSupport() {
+            return typeof THREE !== 'undefined';
+        }
+
+        // 3D Project Visualizations with Fallback
+        function init3DProjects() {
+            const canvases = document.querySelectorAll('.project-3d-canvas');
+            
+            if (!check3DSupport()) {
+                console.warn('THREE.js not loaded, using fallback visuals');
+                // Fallback: Create CSS-only animations
+                canvases.forEach((canvas, index) => {
+                    const container = canvas.parentElement;
+                    const fallbackDiv = document.createElement('div');
+                    fallbackDiv.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(0, 153, 255, 0.1));
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 4rem;
+                        color: var(--accent-primary);
+                        animation: pulse 2s ease-in-out infinite;
+                    `;
+                    
+                    const icons = ['🔐', '🛡️', '🔍', '🌐', '⚡', '🎯'];
+                    fallbackDiv.innerHTML = icons[index] || '🔐';
+                    
+                    container.replaceChild(fallbackDiv, canvas);
+                });
+                return;
+            }
+            
+            canvases.forEach((canvas, index) => {
+                try {
+                    const scene = new THREE.Scene();
+                    const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+                    const renderer = new THREE.WebGLRenderer({ 
+                        canvas: canvas, 
+                        alpha: true,
+                        antialias: false // Disable for performance
+                    });
+                    
+                    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+                    renderer.setClearColor(0x000000, 0);
+                    
+                    // Create different 3D objects for each project
+                    let geometry, material, mesh;
+                    
+                    switch(canvas.dataset.project) {
+                        case 'cloud':
+                            geometry = new THREE.IcosahedronGeometry(1, 0); // Reduced detail
+                            material = new THREE.MeshBasicMaterial({ 
+                                color: 0x00ff88, 
+                                wireframe: true 
+                            });
+                            break;
+                        case 'bug':
+                            geometry = new THREE.OctahedronGeometry(1);
+                            material = new THREE.MeshBasicMaterial({ 
+                                color: 0x0099ff, 
+                                wireframe: true 
+                            });
+                            break;
+                        case 'api':
+                            geometry = new THREE.TorusGeometry(0.8, 0.3, 8, 50); // Reduced segments
+                            material = new THREE.MeshBasicMaterial({ 
+                                color: 0x00ff88, 
+                                wireframe: true 
+                            });
+                            break;
+                        case 'osint':
+                            geometry = new THREE.SphereGeometry(1, 16, 16); // Reduced detail
+                            material = new THREE.MeshBasicMaterial({ 
+                                color: 0xff4444, 
+                                wireframe: true 
+                            });
+                            break;
+                        case 'web':
+                            geometry = new THREE.TetrahedronGeometry(1);
+                            material = new THREE.MeshBasicMaterial({ 
+                                color: 0xffaa00, 
+                                wireframe: true 
+                            });
+                            break;
+                        case 'network':
+                            geometry = new THREE.DodecahedronGeometry(1);
+                            material = new THREE.MeshBasicMaterial({ 
+                                color: 0x0099ff, 
+                                wireframe: true 
+                            });
+                            break;
+                        default:
+                            geometry = new THREE.BoxGeometry(1, 1, 1);
+                            material = new THREE.MeshBasicMaterial({ 
+                                color: 0x00ff88, 
+                                wireframe: true 
+                            });
+                    }
+                    
+                    mesh = new THREE.Mesh(geometry, material);
+                    scene.add(mesh);
+                    
+                    camera.position.z = 3;
+                    
+                    let animationId;
+                    
+                    // Animation loop with performance optimization
+                    function animate() {
+                        mesh.rotation.x += 0.005; // Reduced rotation speed
+                        mesh.rotation.y += 0.005;
+                        
+                        renderer.render(scene, camera);
+                        animationId = requestAnimationFrame(animate);
+                    }
+                    
+                    // Use Intersection Observer to only animate visible elements
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                animate();
+                            } else {
+                                cancelAnimationFrame(animationId);
+                            }
+                        });
+                    });
+                    
+                    observer.observe(canvas);
+                    
+                    // Handle resize
+                    const resizeObserver = new ResizeObserver(() => {
+                        camera.aspect = canvas.clientWidth / canvas.clientHeight;
+                        camera.updateProjectionMatrix();
+                        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+                    });
+                    
+                    resizeObserver.observe(canvas);
+                    
+                } catch (error) {
+                    console.error('3D initialization failed:', error);
+                    // Fallback for this specific canvas
+                    const fallbackDiv = document.createElement('div');
+                    fallbackDiv.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(0, 153, 255, 0.1));
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 4rem;
+                        color: var(--accent-primary);
+                    `;
+                    fallbackDiv.innerHTML = '🔐';
+                    canvas.parentElement.replaceChild(fallbackDiv, canvas);
+                }
+            });
+        }
+
+        // Terminal Simulation with Error Handling
+        function initTerminal() {
+            const terminalInput = document.getElementById('terminalInput');
+            const terminalBody = document.getElementById('terminalBody');
+
+            if (!terminalInput || !terminalBody) {
+                console.warn('Terminal elements not found');
+                return;
+            }
+
+            const commands = {
+                help: () => {
+                    return `Available commands:
+<span class="output">  help          - Show this help message</span>
+<span class="output">  scan [target] - Perform reconnaissance scan</span>
+<span class="output">  exploit --list - List available exploits</span>
+<span class="output">  whoami        - Display current user info</span>
+<span class="output">  tools         - List available security tools</span>
+<span class="output">  clear         - Clear terminal</span>
+<span class="output">  matrix        - Toggle matrix mode</span>`;
+                },
+                scan: (args) => {
+                    const target = args[0] || 'localhost';
+                    return `<span class="output">[*] Scanning ${target}...</span>
+<span class="output">[+] Found 23 open ports</span>
+<span class="output">[+] Discovered 12 subdomains</span>
+<span class="output">[+] API endpoints detected: 45</span>
+<span class="output">[!] Potential auth bypass detected</span>
+<span class="output">[+] Scan complete - generating report</span>`;
+                },
+                exploit: (args) => {
+                    if (args[0] === '--list') {
+                        return `<span class="output">Available exploits:</span>
+<span class="output">  auth-bypass   - Authentication bypass techniques</span>
+<span class="output">  api-fuzz      - API fuzzing and testing</span>
+<span class="output">  token-hijack  - Token hijacking methods</span>
+<span class="output">  payment-spoof - Payment gateway spoofing</span>`;
+                    }
+                    return `<span class="output">Usage: exploit --list</span>`;
+                },
+                tools: () => {
+                    return `<span class="output">Izumi's Arsenal:</span>
+<span class="output">  • Phantom Backend Cloud v4.0</span>
+<span class="output">  • Bug Bounty Hunter Pro</span>
+<span class="output">  • Ultra API Scanner</span>
+<span class="output">  • bKash Gateway Suite</span>
+<span class="output">  • UAE Crypto OSINT Tool</span>
+<span class="output">  • LinkedIn Smart Bot</span>`;
+                },
+                whoami: () => {
+                    return `<span class="output">izumi - Security Researcher & Offensive Engineer</span>
+<span class="output">Specializing in: API Security, Automation, OSINT</span>
+<span class="output">Tools Built: 12+ custom security tools</span>
+<span class="output">Targets Scanned: 200+</span>`;
+                },
+                clear: () => {
+                    terminalBody.innerHTML = `
+                        <div class="terminal-line">
+                            <span class="prompt">┌─[izumi@security]─[~]</span>
+                        </div>
+                        <div class="terminal-input-line">
+                            <span class="prompt">└─$</span>
+                            <input type="text" class="terminal-input" id="terminalInput" placeholder="Try: help, scan, tools, or clear">
+                        </div>
+                    `;
+                    // Re-initialize input after clearing
+                    setTimeout(() => {
+                        initTerminal();
+                    }, 100);
+                    return '';
+                },
+                matrix: () => {
+                    const matrixCanvas = document.getElementById('matrixCanvas');
+                    if (matrixCanvas) {
+                        matrixCanvas.style.opacity = matrixCanvas.style.opacity === '0' ? '0.3' : '0';
+                        return `<span class="output">Matrix mode ${matrixCanvas.style.opacity === '0' ? 'disabled' : 'enabled'}</span>`;
+                    }
+                    return `<span class="output">Matrix canvas not found</span>`;
+                }
+            };
+
+            function handleCommand(e) {
+                if (e.key === 'Enter') {
+                    const command = e.target.value.trim();
+                    const parts = command.split(' ');
+                    const cmd = parts[0].toLowerCase();
+                    const args = parts.slice(1);
+
+                    // Add command to terminal
+                    const newLine = document.createElement('div');
+                    newLine.className = 'terminal-line';
+                    newLine.innerHTML = `<span class="prompt">└─$</span> <span class="command">${command}</span>`;
+
+                    terminalBody.insertBefore(newLine, terminalBody.lastElementChild);
+
+                    // Execute command
+                    if (commands[cmd]) {
+                        const output = commands[cmd](args);
+                        if (output) {
+                            const outputLine = document.createElement('div');
+                            outputLine.className = 'terminal-line';
+                            outputLine.innerHTML = output;
+                            terminalBody.insertBefore(outputLine, terminalBody.lastElementChild);
+                        }
+                    } else if (command) {
+                        const errorLine = document.createElement('div');
+                        errorLine.className = 'terminal-line';
+                        errorLine.innerHTML = `<span class="output">Command not found: ${command}. Type 'help' for available commands.</span>`;
+                        terminalBody.insertBefore(errorLine, terminalBody.lastElementChild);
+                    }
+
+                    e.target.value = '';
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
+                }
+            }
+
+            terminalInput.addEventListener('keypress', handleCommand);
+        }
+
+        // Stats Counter Animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+
+            const observerOptions = {
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.dataset.target);
+                        let current = 0;
+                        const increment = target / 50;
+                      
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            entry.target.textContent = Math.floor(current);
+                        }, 50);
+                      
+                        observer.unobserve(entry.target);
+
+                    }
+                });
+            }, observerOptions);
+            
+            stats.forEach(stat => observer.observe(stat));
+
+        }
+
+        // Skill Progress Animation
+        function animateSkills() {
+            const skillBars = document.querySelectorAll('.skill-progress-bar');
+            
+            const observerOptions = {
+                threshold: 0.5
+            };
+        
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillLevel = entry.target.dataset.skill;
+                        setTimeout(() => {
+                            entry.target.style.width = skillLevel + '%';
+                        }, 500);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            skillBars.forEach(bar => observer.observe(bar));
+        }
+
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinksArray = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinksArray.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0.1s';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+
+            // Simulate form submission
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            button.disabled = true;
+
+            // Submit to Formspree
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    button.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                    button.style.background = '#00ff88';
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            }).catch(error => {
+                button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error - Try Email';
+                button.style.background = '#ff4444';
+            }).finally(() => {
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                    button.style.background = '';
+                }, 3000);
+            });
+        });
+
+        // Parallax effect for floating particles
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const particles = document.querySelectorAll('.particle');
+
+            particles.forEach((particle, index) => {
+                const speed = 0.5 + (index * 0.1);
+                particle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Dynamic particle generation
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = (Math.random() * 8 + 4) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+
+            const particleContainer = document.querySelector('.floating-particles');
+            if (particleContainer) {
+                particleContainer.appendChild(particle);
+
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
+                }, 8000);
+            }
+        }
+
+        // Generate new particles periodically
+        setInterval(createParticle, 3000);
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initMatrix();
+            setTimeout(() => {
+                initTerminal();
+                animateStats();
+                animateSkills();
+            }, 1000);
+        });
+
+        // Handle profile image error
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileImage = document.querySelector('.profile-image');
+            if (profileImage) {
+                profileImage.addEventListener('error', function() {
+                    // Hide the image container if image fails to load
+                    this.parentElement.style.display = 'none';
+                });
+            }
+
+            // Handle project image errors
+            const projectImages = document.querySelectorAll('.project-screenshot');
+            projectImages.forEach(img => {
+                img.addEventListener('error', function() {
+                    // Replace with placeholder or hide
+                    this.style.display = 'none';
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'project-icon';
+                    placeholder.innerHTML = '<i class="fas fa-code"></i>';
+                    placeholder.style.cssText = `
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 4rem;
+                        color: var(--accent-primary);
+                        background: linear-gradient(135deg, var(--secondary-bg), var(--card-bg));
+                    `;
+                    this.parentElement.appendChild(placeholder);
+                });
+            });
+        });
+    </script>
+
+    <!-- Google Analytics (Replace with your tracking ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
+</body>
+</html>

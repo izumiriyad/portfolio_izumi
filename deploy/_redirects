@@ -1,0 +1,8 @@
+/resume   /assets/documents/resume.pdf   301
+/cv       /assets/documents/resume.pdf   301
+/github   https://github.com/izumiriyad   302
+/linkedin https://linkedin.com/in/zeroizumi   302
+/youtube  https://youtube.com/@learnearning24   302
+
+# Fallback for SPA (if needed)
+/*        /index.html   200
