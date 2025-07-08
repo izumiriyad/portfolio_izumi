@@ -26,10 +26,10 @@
 
     <!-- Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Three.js for 3D effects -->
+    
+            <!-- Three.js for 3D effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+    
     <style>
         :root {
             /* Dark hacker theme with professional touch */
@@ -1313,6 +1313,10 @@
             animation: loading 1.5s infinite;
         }
 
+        .text-center {
+    text-align: center;
+}
+
         @keyframes loading {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
@@ -1959,10 +1963,10 @@
 
                 <!-- Download Resume -->
                 <div class="text-center">
-                    <a href="#" class="download-btn" onclick="downloadResume()">
+                    <button href="assets/documents/resume.pdf" class="download-btn" onclick="downloadResume()">
                         <i class="fas fa-download"></i>
                         Download Full Resume
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2250,166 +2254,6 @@ Preferred Contact: Email or LinkedIn DM
             });
         }
         
-                // Check if THREE.js loaded, if not provide fallback
-        function check3DSupport() {
-            return typeof THREE !== 'undefined';
-        }
-
-        // 3D Project Visualizations with Fallback
-        function init3DProjects() {
-            const canvases = document.querySelectorAll('.project-3d-canvas');
-            
-            if (!check3DSupport()) {
-                console.warn('THREE.js not loaded, using fallback visuals');
-                // Fallback: Create CSS-only animations
-                canvases.forEach((canvas, index) => {
-                    const container = canvas.parentElement;
-                    const fallbackDiv = document.createElement('div');
-                    fallbackDiv.style.cssText = `
-                        width: 100%;
-                        height: 100%;
-                        background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(0, 153, 255, 0.1));
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 4rem;
-                        color: var(--accent-primary);
-                        animation: pulse 2s ease-in-out infinite;
-                    `;
-                    
-                    const icons = ['🔐', '🛡️', '🔍', '🌐', '⚡', '🎯'];
-                    fallbackDiv.innerHTML = icons[index] || '🔐';
-                    
-                    container.replaceChild(fallbackDiv, canvas);
-                });
-                return;
-            }
-            
-            canvases.forEach((canvas, index) => {
-                try {
-                    const scene = new THREE.Scene();
-                    const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-                    const renderer = new THREE.WebGLRenderer({ 
-                        canvas: canvas, 
-                        alpha: true,
-                        antialias: false // Disable for performance
-                    });
-                    
-                    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-                    renderer.setClearColor(0x000000, 0);
-                    
-                    // Create different 3D objects for each project
-                    let geometry, material, mesh;
-                    
-                    switch(canvas.dataset.project) {
-                        case 'cloud':
-                            geometry = new THREE.IcosahedronGeometry(1, 0); // Reduced detail
-                            material = new THREE.MeshBasicMaterial({ 
-                                color: 0x00ff88, 
-                                wireframe: true 
-                            });
-                            break;
-                        case 'bug':
-                            geometry = new THREE.OctahedronGeometry(1);
-                            material = new THREE.MeshBasicMaterial({ 
-                                color: 0x0099ff, 
-                                wireframe: true 
-                            });
-                            break;
-                        case 'api':
-                            geometry = new THREE.TorusGeometry(0.8, 0.3, 8, 50); // Reduced segments
-                            material = new THREE.MeshBasicMaterial({ 
-                                color: 0x00ff88, 
-                                wireframe: true 
-                            });
-                            break;
-                        case 'osint':
-                            geometry = new THREE.SphereGeometry(1, 16, 16); // Reduced detail
-                            material = new THREE.MeshBasicMaterial({ 
-                                color: 0xff4444, 
-                                wireframe: true 
-                            });
-                            break;
-                        case 'web':
-                            geometry = new THREE.TetrahedronGeometry(1);
-                            material = new THREE.MeshBasicMaterial({ 
-                                color: 0xffaa00, 
-                                wireframe: true 
-                            });
-                            break;
-                        case 'network':
-                            geometry = new THREE.DodecahedronGeometry(1);
-                            material = new THREE.MeshBasicMaterial({ 
-                                color: 0x0099ff, 
-                                wireframe: true 
-                            });
-                            break;
-                        default:
-                            geometry = new THREE.BoxGeometry(1, 1, 1);
-                            material = new THREE.MeshBasicMaterial({ 
-                                color: 0x00ff88, 
-                                wireframe: true 
-                            });
-                    }
-                    
-                    mesh = new THREE.Mesh(geometry, material);
-                    scene.add(mesh);
-                    
-                    camera.position.z = 3;
-                    
-                    let animationId;
-                    
-                    // Animation loop with performance optimization
-                    function animate() {
-                        mesh.rotation.x += 0.005; // Reduced rotation speed
-                        mesh.rotation.y += 0.005;
-                        
-                        renderer.render(scene, camera);
-                        animationId = requestAnimationFrame(animate);
-                    }
-                    
-                    // Use Intersection Observer to only animate visible elements
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                animate();
-                            } else {
-                                cancelAnimationFrame(animationId);
-                            }
-                        });
-                    });
-                    
-                    observer.observe(canvas);
-                    
-                    // Handle resize
-                    const resizeObserver = new ResizeObserver(() => {
-                        camera.aspect = canvas.clientWidth / canvas.clientHeight;
-                        camera.updateProjectionMatrix();
-                        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-                    });
-                    
-                    resizeObserver.observe(canvas);
-                    
-                } catch (error) {
-                    console.error('3D initialization failed:', error);
-                    // Fallback for this specific canvas
-                    const fallbackDiv = document.createElement('div');
-                    fallbackDiv.style.cssText = `
-                        width: 100%;
-                        height: 100%;
-                        background: linear-gradient(45deg, rgba(0, 255, 136, 0.1), rgba(0, 153, 255, 0.1));
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 4rem;
-                        color: var(--accent-primary);
-                    `;
-                    fallbackDiv.innerHTML = '🔐';
-                    canvas.parentElement.replaceChild(fallbackDiv, canvas);
-                }
-            });
-        }
-
         // Terminal Simulation with Error Handling
         function initTerminal() {
             const terminalInput = document.getElementById('terminalInput');
@@ -2465,22 +2309,23 @@ Preferred Contact: Email or LinkedIn DM
 <span class="output">Tools Built: 12+ custom security tools</span>
 <span class="output">Targets Scanned: 200+</span>`;
                 },
-                clear: () => {
-                    terminalBody.innerHTML = `
-                        <div class="terminal-line">
-                            <span class="prompt">┌─[izumi@security]─[~]</span>
-                        </div>
-                        <div class="terminal-input-line">
-                            <span class="prompt">└─$</span>
-                            <input type="text" class="terminal-input" id="terminalInput" placeholder="Try: help, scan, tools, or clear">
-                        </div>
-                    `;
-                    // Re-initialize input after clearing
-                    setTimeout(() => {
-                        initTerminal();
-                    }, 100);
-                    return '';
-                },
+clear: () => {
+    terminalBody.innerHTML = `
+        <div class="terminal-line">
+            <span class="prompt">┌─[izumi@security]─[~]</span>
+        </div>
+        <div class="terminal-input-line">
+            <span class="prompt">└─$</span>
+            <input type="text" class="terminal-input" id="terminalInput" placeholder="Try: help, scan, tools, or clear">
+        </div>
+    `;
+    // Re-attach event listener to new input
+    const newInput = document.getElementById('terminalInput');
+    if (newInput) {
+        newInput.addEventListener('keypress', handleCommand);
+    }
+    return '';
+},
                 matrix: () => {
                     const matrixCanvas = document.getElementById('matrixCanvas');
                     if (matrixCanvas) {
@@ -2587,13 +2432,15 @@ Preferred Contact: Email or LinkedIn DM
             skillBars.forEach(bar => observer.observe(bar));
         }
 
-        // Mobile Navigation Toggle
-        const mobileToggle = document.getElementById('mobileToggle');
-        const navLinks = document.getElementById('navLinks');
+// Mobile Navigation Toggle
+const mobileToggle = document.getElementById('mobileToggle');
+const navLinks = document.getElementById('navLinks');
 
-        mobileToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
+if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+}
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2652,47 +2499,50 @@ Preferred Contact: Email or LinkedIn DM
             observer.observe(el);
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+// Form submission
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData.entries());
+        // Get form data
+        const formData = new FormData(this);
 
-            // Simulate form submission
-            const button = this.querySelector('button[type="submit"]');
-            const originalText = button.innerHTML;
+        // Simulate form submission
+        const button = this.querySelector('button[type="submit"]');
+        const originalText = button.innerHTML;
 
-            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            button.disabled = true;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        button.disabled = true;
 
-            // Submit to Formspree
-            fetch(this.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    button.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                    button.style.background = '#00ff88';
-                    this.reset();
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            }).catch(error => {
-                button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error - Try Email';
-                button.style.background = '#ff4444';
-            }).finally(() => {
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.disabled = false;
-                    button.style.background = '';
-                }, 3000);
-            });
+        // Submit to Formspree
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                button.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+                button.style.background = '#00ff88';
+                this.reset();
+            } else {
+                throw new Error('Form submission failed');
+            }
+        }).catch(error => {
+            button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error - Try Email';
+            button.style.background = '#ff4444';
+            console.error('Form submission error:', error);
+        }).finally(() => {
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                button.style.background = '';
+            }, 3000);
         });
+    });
+}
 
         // Parallax effect for floating particles
         window.addEventListener('scroll', () => {
@@ -2705,28 +2555,28 @@ Preferred Contact: Email or LinkedIn DM
             });
         });
 
-        // Dynamic particle generation
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.width = (Math.random() * 8 + 4) + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            particle.style.animationDelay = Math.random() * 2 + 's';
+// Dynamic particle generation
+function createParticle() {
+    const particleContainer = document.querySelector('.floating-particles');
+    if (!particleContainer) return;
 
-            const particleContainer = document.querySelector('.floating-particles');
-            if (particleContainer) {
-                particleContainer.appendChild(particle);
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.width = (Math.random() * 8 + 4) + 'px';
+    particle.style.height = particle.style.width;
+    particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+    particle.style.animationDelay = Math.random() * 2 + 's';
 
-                // Remove particle after animation
-                setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.remove();
-                    }
-                }, 8000);
-            }
+    particleContainer.appendChild(particle);
+
+    // Remove particle after animation
+    setTimeout(() => {
+        if (particle.parentNode) {
+            particle.remove();
         }
+    }, 8000);
+}
 
         // Generate new particles periodically
         setInterval(createParticle, 3000);
@@ -2787,12 +2637,12 @@ Preferred Contact: Email or LinkedIn DM
     </script>
 
     <!-- Google Analytics (Replace with your tracking ID) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P7BP5FDKXN"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_TRACKING_ID');
+        gtag('config', 'G-P7BP5FDKXN');
     </script>
 </body>
 </html>
